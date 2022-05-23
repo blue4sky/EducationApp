@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-                  color: R.colors.primary,
+                  color: R.colours.primary,
                 ),
                 height: 130,
                 child: Stack(

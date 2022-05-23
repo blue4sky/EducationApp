@@ -1,12 +1,13 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'package:education_app/view/home_page.dart';
 import 'package:education_app/view/main/discussion/discussion_page.dart';
-import 'package:education_app/view/main/home_page.dart';
 import 'package:education_app/view/main/profile/profile_page.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
+  static const String route = "main_page";
 
   @override
   State<MainPage> createState() => _MainPageState();
