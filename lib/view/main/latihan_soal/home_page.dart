@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+  static String route = "home_page";
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -47,11 +48,12 @@ class _HomePageState extends State<HomePage> {
                 itemCount: 3,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: ((context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: Image.asset(R.assets.bannerHome),
-                );
-              }),),
+                  return Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
+                    child: Image.asset(R.assets.bannerHome),
+                  );
+                }),
+              ),
             ),
             SizedBox(height: 35),
           ],

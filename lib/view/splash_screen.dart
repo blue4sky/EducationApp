@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'package:education_app/view/login_page.dart';
+import 'package:education_app/view/main/latihan_soal/home_page.dart';
+import 'package:education_app/view/main_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:education_app/constant/r.dart';
 
@@ -15,7 +18,13 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   goToNextPage() {
     Timer(const Duration(seconds: 3), () {
-      Navigator.of(context).pushReplacementNamed(LoginPage.route);
+      final user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        // Redirect to Register or Home
+        Navigator.of(context).pushReplacementNamed(MainPage.route);
+      } else {
+        Navigator.of(context).pushReplacementNamed(LoginPage.route);
+      }
     });
   }
 

@@ -1,7 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:education_app/constant/r.dart';
+import 'package:education_app/view/login_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -168,7 +171,12 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
           GestureDetector(
-            onTap: (() {}),
+            onTap: (() async {
+              await GoogleSignIn().signOut();
+              await FirebaseAuth.instance.signOut();
+              Navigator.of(context)
+                  .pushNamedAndRemoveUntil(LoginPage.route, (route) => false);
+            }),
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 13),
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),

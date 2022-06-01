@@ -5,10 +5,15 @@ import 'package:education_app/view/main/latihan_soal/paket_soal_page.dart';
 import 'package:education_app/view/main_page.dart';
 import 'package:education_app/view/register_page.dart';
 import 'package:education_app/view/splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    // options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -32,11 +37,11 @@ class MyApp extends StatelessWidget {
       initialRoute: "/",
       routes: {
         "/": (context) => const SplashScreen(),
-        LoginPage.route : (context) => const LoginPage(),
-        RegisterPage.route : (context) => const RegisterPage(),
-        MainPage.route : (context) => const MainPage(),
-        MapelPage.route :(context) => const MapelPage(),
-        PaketSoalPage.route : (context) => const PaketSoalPage(),
+        LoginPage.route: (context) => const LoginPage(),
+        RegisterPage.route: (context) => const RegisterPage(),
+        MainPage.route: (context) => const MainPage(),
+        MapelPage.route: (context) => const MapelPage(),
+        PaketSoalPage.route: (context) => const PaketSoalPage(),
       },
     );
   }
