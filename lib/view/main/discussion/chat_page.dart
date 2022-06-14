@@ -190,6 +190,7 @@ class _ChatPageState extends State<ChatPage> {
                         "content": textController.text,
                         "email": user.email,
                         "photo": user.photoURL,
+                        // "file-url": "user.photoURL",
                         "time": FieldValue.serverTimestamp(),
                       };
                       chat.add(chatContent).whenComplete(() {
