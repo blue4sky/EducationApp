@@ -1,3 +1,6 @@
+import 'package:education_app/models/user_by_email.dart';
+import 'package:education_app/repository/auth_api.dart';
+import 'package:education_app/view/main_page.dart';
 import 'package:education_app/view/register_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -81,7 +84,17 @@ class _LoginPageState extends State<LoginPage> {
                   final user = FirebaseAuth.instance.currentUser;
 
                   if (user != null) {
-                    Navigator.of(context).pushNamed(RegisterPage.route);
+                    // Check with the API
+                    final dataUser = await AuthApi().getUserByEmail(user.email);
+                    if (dataUser != null) {
+                      final data = UserByEmail.fromJson(dataUser);
+                      // Check if user has register or no (1 registered, 0 not yet)
+                      if (data.status == 1) {
+                        Navigator.of(context).pushNamed(MainPage.route);
+                      } else {
+                        Navigator.of(context).pushNamed(RegisterPage.route);
+                      }
+                    }
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
