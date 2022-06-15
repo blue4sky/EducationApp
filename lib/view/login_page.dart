@@ -1,3 +1,4 @@
+import 'package:education_app/models/network_response.dart';
 import 'package:education_app/models/user_by_email.dart';
 import 'package:education_app/repository/auth_api.dart';
 import 'package:education_app/view/main_page.dart';
@@ -85,9 +86,9 @@ class _LoginPageState extends State<LoginPage> {
 
                   if (user != null) {
                     // Check with the API
-                    final dataUser = await AuthApi().getUserByEmail(user.email);
-                    if (dataUser != null) {
-                      final data = UserByEmail.fromJson(dataUser);
+                    final dataUser = await AuthApi().getUserByEmail();
+                    if (dataUser.status == Status.success) {
+                      final data = UserByEmail.fromJson(dataUser.data!);
                       // Check if user has register or no (1 registered, 0 not yet)
                       if (data.status == 1) {
                         Navigator.of(context).pushNamed(MainPage.route);
