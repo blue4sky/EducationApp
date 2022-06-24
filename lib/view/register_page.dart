@@ -9,6 +9,8 @@ import 'package:education_app/view/login_page.dart';
 import 'package:education_app/view/main_page.dart';
 import 'package:flutter/material.dart';
 
+import '../helpers/preference_helper.dart';
+
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
   static const String route = "register_page";
@@ -95,12 +97,13 @@ class _RegisterPageState extends State<RegisterPage> {
               if (result.status == Status.success) {
                 final registerResult = UserByEmail.fromJson(result.data!);
                 if (registerResult.status == 1) {
-Navigator.of(context).pushNamedAndRemoveUntil(
-                    MainPage.route, (context) => false);
+                  await PreferenceHelper().setUserData(registerResult.data!);
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                      MainPage.route, (context) => false);
                 } else {
-                  ScaffoldMessenger.of(context)
-                    .showSnackBar(SnackBar(content: Text(registerResult.message!)));
-                }  
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(registerResult.message!)));
+                }
               } else {
                 ScaffoldMessenger.of(context)
                     .showSnackBar(SnackBar(content: Text("Please try again!")));

@@ -1,3 +1,4 @@
+import 'package:education_app/helpers/preference_helper.dart';
 import 'package:education_app/models/network_response.dart';
 import 'package:education_app/models/user_by_email.dart';
 import 'package:education_app/repository/auth_api.dart';
@@ -83,7 +84,6 @@ class _LoginPageState extends State<LoginPage> {
                   await signInWithGoogle();
 
                   final user = FirebaseAuth.instance.currentUser;
-
                   if (user != null) {
                     // Check with the API
                     final dataUser = await AuthApi().getUserByEmail();
@@ -91,6 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                       final data = UserByEmail.fromJson(dataUser.data!);
                       // Check if user has register or no (1 registered, 0 not yet)
                       if (data.status == 1) {
+                        await PreferenceHelper().setUserData(data.data!);
                         Navigator.of(context).pushNamed(MainPage.route);
                       } else {
                         Navigator.of(context).pushNamed(RegisterPage.route);
