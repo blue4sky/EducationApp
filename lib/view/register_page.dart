@@ -1,6 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:education_app/constant/r.dart';
+import 'package:education_app/helpers/user_email.dart';
+import 'package:education_app/models/network_response.dart';
+import 'package:education_app/models/user_by_email.dart';
+import 'package:education_app/repository/auth_api.dart';
 import 'package:education_app/view/login_page.dart';
 import 'package:education_app/view/main_page.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +39,11 @@ class _RegisterPageState extends State<RegisterPage> {
     setState(() {});
   }
 
-  initDataUser() {}
+  initDataUser() {
+    emailController.text = UserEmail.getUserEmail()!;
+    fullNameController.text = UserEmail.getUserDisplayName()!;
+    setState(() {});
+  }
 
   @override
   void initState() {
@@ -73,8 +81,30 @@ class _RegisterPageState extends State<RegisterPage> {
         child: Padding(
           padding: const EdgeInsets.only(bottom: 20.0),
           child: ButtonLogin(
-            onTap: () {
-              Navigator.of(context).pushNamed(MainPage.route);
+            onTap: () async {
+              final json = {
+                "email": emailController.text,
+                "nama_lengkap": fullNameController.text,
+                "nama_sekolah": schoolNameController.text,
+                "kelas": selectedClass,
+                "gender": gender,
+                "foto": UserEmail.getUserPhotoUrl(),
+              };
+              print(json);
+              final result = await AuthApi().postRegister(json);
+              if (result.status == Status.success) {
+                final registerResult = UserByEmail.fromJson(result.data!);
+                if (registerResult.status == 1) {
+Navigator.of(context).pushNamedAndRemoveUntil(
+                    MainPage.route, (context) => false);
+                } else {
+                  ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(content: Text(registerResult.message!)));
+                }  
+              } else {
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(content: Text("Please try again!")));
+              }
             },
             backgroundColor: R.colours.primary,
             borderColor: R.colours.primary,
