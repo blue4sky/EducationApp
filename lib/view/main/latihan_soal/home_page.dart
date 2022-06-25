@@ -7,6 +7,7 @@ import 'package:education_app/models/network_response.dart';
 import 'package:education_app/repository/latihan_soal_api.dart';
 import 'package:education_app/view/main/latihan_soal/mapel_page.dart';
 import 'package:education_app/view/main/latihan_soal/paket_soal_page.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -37,11 +38,36 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  // Listening msg from firebase
+  setupFCM() async {
+    final tokenFcm = await FirebaseMessaging.instance.getToken();
+    print("tokenFCM: ${tokenFcm}");
+
+    RemoteMessage? initialMessage =
+        await FirebaseMessaging.instance.getInitialMessage();
+
+    // If the message also contains a data property with a "type" of "chat",
+    // navigate to a chat screen
+    // if (initialMessage != null) {
+    //   _handleMessage(initialMessage);
+    // }
+
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      print('Got a message whilst in the foreground!');
+      print('Message data: ${message.data}');
+
+      if (message.notification != null) {
+        print('Message also contained a notification: ${message.notification}');
+      }
+    });
+  }
+
   @override
   void initState() {
     super.initState();
     getMapel();
     getBanner();
+    setupFCM();
   }
 
   @override
