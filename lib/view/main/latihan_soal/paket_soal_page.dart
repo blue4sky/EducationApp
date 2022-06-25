@@ -4,6 +4,7 @@ import 'package:education_app/constant/r.dart';
 import 'package:education_app/models/network_response.dart';
 import 'package:education_app/models/paket_soal_list.dart';
 import 'package:education_app/repository/latihan_soal_api.dart';
+import 'package:education_app/view/main/latihan_soal/kerjakan_latihan_soal_page.dart';
 import 'package:flutter/material.dart';
 
 class PaketSoalPage extends StatefulWidget {
@@ -55,17 +56,18 @@ class _PaketSoalPageState extends State<PaketSoalPage> {
                         child: CircularProgressIndicator(),
                       )
                     : SingleChildScrollView(
-                      child: Wrap(
-                          children:
-                              List.generate(paketSoalList!.data!.length, (index) {
-                            final currentPaketSoal = paketSoalList!.data![index];
+                        child: Wrap(
+                          children: List.generate(paketSoalList!.data!.length,
+                              (index) {
+                            final currentPaketSoal =
+                                paketSoalList!.data![index];
                             return Container(
-                              padding: EdgeInsets.all(3),
+                                padding: EdgeInsets.all(3),
                                 width: MediaQuery.of(context).size.width * 0.4,
                                 child: PaketSoalWidget(data: currentPaketSoal));
                           }).toList(),
                         ),
-                    )
+                      )
 
                 // GridView.count(
                 //     mainAxisSpacing: 10,
@@ -102,39 +104,46 @@ class PaketSoalWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.white,
-      ),
-      padding: const EdgeInsets.all(13.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.blue.withOpacity(0.2),
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => KerjakanLatihanSoalPage(id: data.exerciseId!),
+        ));
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.white,
+        ),
+        padding: const EdgeInsets.all(13.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.blue.withOpacity(0.2),
+              ),
+              padding: EdgeInsets.all(12),
+              child: Image.asset(R.assets.icNote, width: 14),
             ),
-            padding: EdgeInsets.all(12),
-            child: Image.asset(R.assets.icNote, width: 14),
-          ),
-          SizedBox(height: 4),
-          Text(
-            data.exerciseTitle!,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
+            SizedBox(height: 4),
+            Text(
+              data.exerciseTitle!,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
-          Text(
-            "${data.jumlahDone}/${data.jumlahSoal} Paket Soal",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 9,
-              color: R.colours.greySubtitleHome,
+            Text(
+              "${data.jumlahDone}/${data.jumlahSoal} Paket Soal",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 9,
+                color: R.colours.greySubtitleHome,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
