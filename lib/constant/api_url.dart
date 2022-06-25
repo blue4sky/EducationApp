@@ -6,6 +6,8 @@ class ApiUrl {
   static String userRegistrasi = "users/registrasi";
   static String userUpdateProfile = "users/update";
 
+  static String banner = "event/list";
+
   static String latihanMapel = "exercise/data_course";
   static String latihanPaketSoal = "exercise/data_exercise";
   static String latihanKerjakanSoal = "exercise/kerjakan";
