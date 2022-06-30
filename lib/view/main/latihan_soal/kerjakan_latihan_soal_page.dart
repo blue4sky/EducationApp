@@ -4,6 +4,7 @@ import 'package:education_app/repository/latihan_soal_api.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 class KerjakanLatihanSoalPage extends StatefulWidget {
   const KerjakanLatihanSoalPage({Key? key, required this.id}) : super(key: key);
@@ -72,46 +73,52 @@ class _KerjakanLatihanSoalPageState extends State<KerjakanLatihanSoalPage>
                 // TabBarView Quest and Choices
                 Expanded(
                   child: Container(
+                    padding: EdgeInsets.all(8),
                     child: TabBarView(
                         controller: _controller,
                         children: List.generate(
                           soalList!.data!.length,
-                          (index) => Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Soal No ${index + 1}"),
-                              if (soalList!.data![index].questionTitle != null)
-                                Text(soalList!.data![index].questionTitle!),
-                              if (soalList!.data![index].questionTitleImg !=
-                                  null)
-                                Image.network(
-                                    soalList!.data![index].questionTitleImg!),
-                              _buildOption(
-                                "A.",
-                                soalList!.data![index].optionA,
-                                soalList!.data![index].optionAImg,
-                              ),
-                              _buildOption(
-                                "B.",
-                                soalList!.data![index].optionB,
-                                soalList!.data![index].optionBImg,
-                              ),
-                              _buildOption(
-                                "C.",
-                                soalList!.data![index].optionC,
-                                soalList!.data![index].optionCImg,
-                              ),
-                              _buildOption(
-                                "D.",
-                                soalList!.data![index].optionD,
-                                soalList!.data![index].optionDImg,
-                              ),
-                              _buildOption(
-                                "E.",
-                                soalList!.data![index].optionE,
-                                soalList!.data![index].optionEImg,
-                              )
-                            ],
+                          (index) => SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("Soal No ${index + 1}"),
+                                if (soalList!.data![index].questionTitle !=
+                                    null)
+                                  Html(
+                                      data: soalList!
+                                          .data![index].questionTitle!),
+                                if (soalList!.data![index].questionTitleImg !=
+                                    null)
+                                  Image.network(
+                                      soalList!.data![index].questionTitleImg!),
+                                _buildOption(
+                                  "A.",
+                                  soalList!.data![index].optionA,
+                                  soalList!.data![index].optionAImg,
+                                ),
+                                _buildOption(
+                                  "B.",
+                                  soalList!.data![index].optionB,
+                                  soalList!.data![index].optionBImg,
+                                ),
+                                _buildOption(
+                                  "C.",
+                                  soalList!.data![index].optionC,
+                                  soalList!.data![index].optionCImg,
+                                ),
+                                _buildOption(
+                                  "D.",
+                                  soalList!.data![index].optionD,
+                                  soalList!.data![index].optionDImg,
+                                ),
+                                _buildOption(
+                                  "E.",
+                                  soalList!.data![index].optionE,
+                                  soalList!.data![index].optionEImg,
+                                )
+                              ],
+                            ),
                           ),
                         ).toList()),
                   ),
@@ -126,8 +133,8 @@ class _KerjakanLatihanSoalPageState extends State<KerjakanLatihanSoalPage>
         child: Row(
       children: [
         Text(option),
-        if (answer != null) Text(answer),
-        if (answerImg != null) Image.network(answerImg),
+        if (answer != null) Expanded(child: Html(data: answer)),
+        if (answerImg != null) Expanded(child: Image.network(answerImg)),
       ],
     ));
   }
