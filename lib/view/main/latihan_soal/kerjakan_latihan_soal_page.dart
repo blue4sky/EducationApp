@@ -1,3 +1,4 @@
+import 'package:education_app/constant/r.dart';
 import 'package:education_app/models/kerjakan_soal_list.dart';
 import 'package:education_app/models/network_response.dart';
 import 'package:education_app/repository/latihan_soal_api.dart';
@@ -82,40 +83,57 @@ class _KerjakanLatihanSoalPageState extends State<KerjakanLatihanSoalPage>
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("Soal No ${index + 1}"),
+                                Text(
+                                  "Soal No ${index + 1}",
+                                  style: TextStyle(
+                                    color: R.colours.greySubtitleHome,
+                                    fontSize: 12,
+                                  ),
+                                ),
                                 if (soalList!.data![index].questionTitle !=
                                     null)
                                   Html(
-                                      data: soalList!
-                                          .data![index].questionTitle!),
+                                    data: soalList!.data![index].questionTitle!,
+                                    style: {
+                                      "body": Style(padding: EdgeInsets.zero),
+                                      "p": Style(
+                                        fontSize: FontSize(12),
+                                      )
+                                    },
+                                  ),
                                 if (soalList!.data![index].questionTitleImg !=
                                     null)
                                   Image.network(
                                       soalList!.data![index].questionTitleImg!),
                                 _buildOption(
-                                  "A.",
+                                  "A",
                                   soalList!.data![index].optionA,
                                   soalList!.data![index].optionAImg,
+                                  index,
                                 ),
                                 _buildOption(
-                                  "B.",
+                                  "B",
                                   soalList!.data![index].optionB,
                                   soalList!.data![index].optionBImg,
+                                  index,
                                 ),
                                 _buildOption(
-                                  "C.",
+                                  "C",
                                   soalList!.data![index].optionC,
                                   soalList!.data![index].optionCImg,
+                                  index,
                                 ),
                                 _buildOption(
-                                  "D.",
+                                  "D",
                                   soalList!.data![index].optionD,
                                   soalList!.data![index].optionDImg,
+                                  index,
                                 ),
                                 _buildOption(
-                                  "E.",
+                                  "E",
                                   soalList!.data![index].optionE,
                                   soalList!.data![index].optionEImg,
+                                  index,
                                 )
                               ],
                             ),
@@ -128,14 +146,45 @@ class _KerjakanLatihanSoalPageState extends State<KerjakanLatihanSoalPage>
     );
   }
 
-  Container _buildOption(String option, String? answer, String? answerImg) {
-    return Container(
-        child: Row(
-      children: [
-        Text(option),
-        if (answer != null) Expanded(child: Html(data: answer)),
-        if (answerImg != null) Expanded(child: Image.network(answerImg)),
-      ],
-    ));
+  Widget _buildOption(
+      String option, String? answer, String? answerImg, int index) {
+    final answerCheck = soalList!.data![index].studentAnswer == option;
+    return GestureDetector(
+      onTap: () {
+        soalList!.data![index].studentAnswer = option;
+        setState(() {});
+      },
+      child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          margin: EdgeInsets.symmetric(vertical: 2),
+          decoration: BoxDecoration(
+              color: answerCheck ? Colors.blue.withOpacity(0.4) : Colors.white,
+              border: Border.all(
+                width: 1,
+                color: Colors.grey,
+              ),
+              borderRadius: BorderRadius.circular(10)),
+          child: Row(
+            children: [
+              Text(
+                option + ".",
+                style: TextStyle(
+                  color: answerCheck ? Colors.white : Colors.red,
+                ),
+              ),
+              if (answer != null)
+                Expanded(
+                    child: Html(
+                  data: answer,
+                  style: {
+                    "p": Style(
+                      color: answerCheck ? Colors.white : Colors.black,
+                    )
+                  },
+                )),
+              if (answerImg != null) Expanded(child: Image.network(answerImg)),
+            ],
+          )),
+    );
   }
 }
