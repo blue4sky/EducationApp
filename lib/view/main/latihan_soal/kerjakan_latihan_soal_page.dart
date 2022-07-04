@@ -1,7 +1,9 @@
 import 'package:education_app/constant/r.dart';
+import 'package:education_app/helpers/user_email.dart';
 import 'package:education_app/models/kerjakan_soal_list.dart';
 import 'package:education_app/models/network_response.dart';
 import 'package:education_app/repository/latihan_soal_api.dart';
+import 'package:education_app/view/main/latihan_soal/result_page.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
@@ -66,13 +68,41 @@ class _KerjakanLatihanSoalPageState extends State<KerjakanLatihanSoalPage>
                       // When on the last question
                       if (_controller!.index == soalList!.data!.length - 1) {
                         final result = await showModalBottomSheet(
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
                             context: context,
                             builder: (context) {
                               return BottomSheetConfirmation();
                             });
                         print(result);
                         if (result == true) {
-                          print("Send to backend");
+                          // print("Send to backend");
+                          List<String> answer = [];
+                          List<String> questionId = [];
+
+                          soalList!.data!.forEach((element) {
+                            questionId.add(element.bankQuestionId!);
+                            answer.add(element.studentAnswer!);
+                          });
+
+                          final payload = {
+                            "user_email": UserEmail.getUserEmail(),
+                            "exercise_id": widget.id,
+                            "bank_question_id": questionId,
+                            "student_answer": answer,
+                          };
+                          final result =
+                              await LatihanSoalApi().postStudentAnswer(payload);
+                          if (result.status == Status.success) {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (BuildContext context) {
+                              return ResultPage();
+                            }));
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content:
+                                    Text("Submit failed. Please try again!")));
+                          }
                         }
                       } else {
                         _controller!.animateTo(_controller!.index + 1);
@@ -240,48 +270,58 @@ class _BottomSheetConfirmationState extends State<BottomSheetConfirmation> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(20),
-      child: Column(
-        children: [
-          Container(
-            width: 100,
-            height: 5,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: R.colours.greySubtitle),
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          Image.asset(R.assets.icConfirmation),
-          SizedBox(
-            height: 15,
-          ),
-          Text("Kumpulkan latihan soal sekarang?"),
-          Text("Boleh langsung kumpulin dong"),
-          Row(
-            children: [
-              Expanded(
-                  child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).pop(false);
-                      },
-                      child: Text("Nanti dulu"))),
-              SizedBox(
-                width: 15,
-              ),
-              Expanded(
-                  child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).pop(true);
-                      },
-                      child: Text("Ya"))),
-              SizedBox(
-                width: 15,
-              ),
-            ],
-          )
-        ],
+      padding: EdgeInsets.all(0),
+      child: Container(
+        padding: EdgeInsets.all(20),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(25.0),
+              topRight: Radius.circular(25.0),
+            )),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 100,
+              height: 5,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: R.colours.greySubtitle),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Image.asset(R.assets.icConfirmation),
+            SizedBox(
+              height: 15,
+            ),
+            Text("Kumpulkan latihan soal sekarang?"),
+            Text("Boleh langsung kumpulin dong"),
+            Row(
+              children: [
+                Expanded(
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(false);
+                        },
+                        child: Text("Nanti dulu"))),
+                SizedBox(
+                  width: 15,
+                ),
+                Expanded(
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(true);
+                        },
+                        child: Text("Ya"))),
+                SizedBox(
+                  width: 15,
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

@@ -57,12 +57,10 @@ class LatihanSoalApi {
   }
 
   Future<NetworkResponse> getPaketSoal(id) async {
-    final result = await _getRequest(
-        endpoint: ApiUrl.latihanPaketSoal,
-        param: {
-          "user_email": UserEmail.getUserEmail(),
-          "course_id" : id,
-          });
+    final result = await _getRequest(endpoint: ApiUrl.latihanPaketSoal, param: {
+      "user_email": UserEmail.getUserEmail(),
+      "course_id": id,
+    });
     return result;
   }
 
@@ -84,9 +82,15 @@ class LatihanSoalApi {
   Future<NetworkResponse> postQuestionList(id) async {
     final result =
         await _postRequest(endpoint: ApiUrl.latihanKerjakanSoal, body: {
-          "exercise_id" : id,
-          "user_email" : UserEmail.getUserEmail(),
-        });
+      "exercise_id": id,
+      "user_email": UserEmail.getUserEmail(),
+    });
+    return result;
+  }
+
+  Future<NetworkResponse> postStudentAnswer(payload) async {
+    final result = await _postRequest(
+        endpoint: ApiUrl.latihanSubmitJawaban, body: payload);
     return result;
   }
 }
