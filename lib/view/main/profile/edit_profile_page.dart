@@ -41,9 +41,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
     setState(() {});
   }
 
-  initDataUser() {
+  initDataUser() async {
     emailController.text = UserEmail.getUserEmail()!;
-    fullNameController.text = UserEmail.getUserDisplayName()!;
+    final dataUser = await PreferenceHelper().getUserData();
+    fullNameController.text = dataUser!.userName!;
+    schoolNameController.text = dataUser.userAsalSekolah!;
+    gender = dataUser.userGender!;
     setState(() {});
   }
 
@@ -56,16 +59,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfff0f3f5),
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        // ignore: prefer_const_constructors
-        // shape: RoundedRectangleBorder(
-        //     borderRadius: BorderRadius.only(
-        //   bottomLeft: Radius.circular(25.0),
-        //   bottomRight: Radius.circular(25.0),
-        // )),
         elevation: 0,
-        // backgroundColor: R.colours.primary,
         centerTitle: true,
         iconTheme: IconThemeData(color: Colors.white),
         title: Text(
@@ -110,7 +106,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             backgroundColor: R.colours.primary,
             borderColor: R.colours.primary,
             child: Text(
-              R.strings.perbaharuiAkun,
+              R.strings.perbaharuiData,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
