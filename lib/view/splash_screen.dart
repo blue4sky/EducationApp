@@ -31,9 +31,9 @@ class _SplashScreenState extends State<SplashScreen> {
           final data = UserByEmail.fromJson(dataUser.data!);
           // Check if user has register or no (1 registered, 0 not yet)
           if (data.status == 1) {
-            Navigator.of(context).pushNamed(MainPage.route);
+            Navigator.of(context).pushReplacementNamed(MainPage.route);
           } else {
-            Navigator.of(context).pushNamed(RegisterPage.route);
+            Navigator.of(context).pushReplacementNamed(RegisterPage.route);
           }
         }
       } else {
