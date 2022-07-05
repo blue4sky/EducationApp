@@ -72,12 +72,14 @@ class _MainPageState extends State<MainPage> {
                         _pc.animateToPage(index,
                             duration: Duration(milliseconds: 500),
                             curve: Curves.bounceInOut);
+                        setState(() {});
                       },
                       child: Column(
                         children: [
                           Image.asset(
                             R.assets.icHome,
                             height: 20,
+                            color: index == 0 ? null : Colors.grey,
                           ),
                           Text("Home")
                         ],
@@ -96,7 +98,7 @@ class _MainPageState extends State<MainPage> {
                           Opacity(
                             opacity: 0,
                             child: Image.asset(
-                              R.assets.icHome, 
+                              R.assets.icHome,
                               height: 20,
                             ),
                           ),
@@ -117,13 +119,15 @@ class _MainPageState extends State<MainPage> {
                         _pc.animateToPage(index,
                             duration: Duration(milliseconds: 500),
                             curve: Curves.bounceInOut);
+                        setState(() {});
                       },
                       child: Column(
                         children: [
                           Image.asset(
-                              R.assets.icProfile, 
-                              height: 20,
-                            ),
+                            R.assets.icProfile,
+                            height: 20,
+                            color: index == 1 ? null : Colors.grey,
+                          ),
                           Text("Profile")
                         ],
                       ),

@@ -1,9 +1,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:education_app/constant/r.dart';
+import 'package:education_app/helpers/preference_helper.dart';
 import 'package:education_app/models/banner_list.dart';
 import 'package:education_app/models/mapel_list.dart';
 import 'package:education_app/models/network_response.dart';
+import 'package:education_app/models/user_by_email.dart';
 import 'package:education_app/repository/latihan_soal_api.dart';
 import 'package:education_app/view/main/latihan_soal/mapel_page.dart';
 import 'package:education_app/view/main/latihan_soal/paket_soal_page.dart';
@@ -62,12 +64,19 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  UserData? dataUser;
+  Future getDataUser() async {
+    dataUser = await PreferenceHelper().getUserData();
+    setState(() {});
+  }
+
   @override
   void initState() {
     super.initState();
     getMapel();
     getBanner();
     setupFCM();
+    getDataUser();
   }
 
   @override
@@ -247,7 +256,7 @@ class _HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Hi, Nama User",
+                  "Hi, " + (dataUser?.userName ?? "Nama User"),
                   style: GoogleFonts.poppins()
                       .copyWith(fontSize: 12, fontWeight: FontWeight.w700),
                 ),
