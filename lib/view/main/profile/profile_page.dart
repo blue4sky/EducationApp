@@ -39,11 +39,15 @@ class _ProfilePageState extends State<ProfilePage> {
         centerTitle: true,
         actions: [
           TextButton(
-            onPressed: (() {
-              Navigator.of(context)
+            onPressed: (() async {
+              final result = await Navigator.of(context)
                   .push(MaterialPageRoute(builder: (BuildContext context) {
                 return EditProfilePage();
               }));
+              // If user succeed updating their data
+              if (result == true) {
+                getUserData();
+              }
             }),
             child: Text(
               "Edit",
@@ -172,7 +176,6 @@ class _ProfilePageState extends State<ProfilePage> {
                           fontSize: 12,
                         ),
                       ),
-                      // NEED TO BE CHANGED!!! NULL
                       Text(
                         user!.kelas!,
                         style: TextStyle(

@@ -87,13 +87,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 "foto": UserEmail.getUserPhotoUrl(),
               };
               print(json);
-              final result = await AuthApi().postRegister(json);
+              final result = await AuthApi().postUpdateUser(json);
               if (result.status == Status.success) {
                 final registerResult = UserByEmail.fromJson(result.data!);
                 if (registerResult.status == 1) {
                   await PreferenceHelper().setUserData(registerResult.data!);
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                      MainPage.route, (context) => false);
+                  // true means update data from the previous page
+                  Navigator.pop(context, true);
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text(registerResult.message!)));
@@ -151,9 +151,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           elevation: 0,
-                          primary: gender == "Laki-laki"
-                              ? R.colours.primary
-                              : Colors.white,
+                          primary:
+                              gender.toLowerCase() == "Laki-laki".toLowerCase()
+                                  ? R.colours.primary
+                                  : Colors.white,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),
                             side: BorderSide(
@@ -169,7 +170,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           "Laki-laki",
                           style: TextStyle(
                             fontSize: 14,
-                            color: gender == "Laki-laki"
+                            color: gender.toLowerCase() ==
+                                    "Laki-laki".toLowerCase()
                                 ? Colors.white
                                 : Color(0xff282828),
                           ),
