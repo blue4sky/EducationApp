@@ -96,7 +96,9 @@ class _KerjakanLatihanSoalPageState extends State<KerjakanLatihanSoalPage>
                           if (result.status == Status.success) {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (BuildContext context) {
-                              return ResultPage();
+                              return ResultPage(
+                                exerciseId: widget.id,
+                              );
                             }));
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(

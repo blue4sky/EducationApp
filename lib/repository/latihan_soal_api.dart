@@ -93,4 +93,12 @@ class LatihanSoalApi {
         endpoint: ApiUrl.latihanSubmitJawaban, body: payload);
     return result;
   }
+
+  Future<NetworkResponse> getResult(id) async {
+    final result = await _getRequest(endpoint: ApiUrl.latihanSkor, param: {
+      "exercise_id": id,
+      "user_email": UserEmail.getUserEmail(),
+    });
+    return result;
+  }
 }
