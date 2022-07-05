@@ -4,6 +4,7 @@ import 'package:education_app/constant/r.dart';
 import 'package:education_app/helpers/preference_helper.dart';
 import 'package:education_app/models/user_by_email.dart';
 import 'package:education_app/view/login_page.dart';
+import 'package:education_app/view/main/profile/edit_profile_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -38,11 +39,11 @@ class _ProfilePageState extends State<ProfilePage> {
         centerTitle: true,
         actions: [
           TextButton(
-            onPressed: (() async {
-              await GoogleSignIn().signOut();
-              await FirebaseAuth.instance.signOut();
+            onPressed: (() {
               Navigator.of(context)
-                  .pushNamedAndRemoveUntil(LoginPage.route, (route) => false);
+                  .push(MaterialPageRoute(builder: (BuildContext context) {
+                return EditProfilePage();
+              }));
             }),
             child: Text(
               "Edit",
@@ -173,7 +174,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       // NEED TO BE CHANGED!!! NULL
                       Text(
-                        "12",
+                        user!.kelas!,
                         style: TextStyle(
                           fontSize: 13,
                         ),
