@@ -37,7 +37,7 @@ class _PaketSoalPageState extends State<PaketSoalPage> {
     return Scaffold(
       backgroundColor: R.colours.grey,
       appBar: AppBar(
-        title: Text("Paket Soal"),
+        title: Text("Topics of The Subject"),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
@@ -45,7 +45,7 @@ class _PaketSoalPageState extends State<PaketSoalPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Pilih Paket Soal",
+              "Select a topic",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
               ),
@@ -135,7 +135,7 @@ class PaketSoalWidget extends StatelessWidget {
               ),
             ),
             Text(
-              "${data.jumlahDone}/${data.jumlahSoal} Paket Soal",
+              "${data.jumlahDone}/${data.jumlahSoal} Questions",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 9,

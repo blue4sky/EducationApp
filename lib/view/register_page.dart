@@ -70,7 +70,7 @@ class _RegisterPageState extends State<RegisterPage> {
           backgroundColor: Colors.white,
           iconTheme: IconThemeData(color: Colors.black),
           title: Text(
-            "Yuk isi data diri",
+            "Your Personal Information",
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w700,
@@ -92,7 +92,6 @@ class _RegisterPageState extends State<RegisterPage> {
                 "gender": gender,
                 "foto": UserEmail.getUserPhotoUrl(),
               };
-              print(json);
               final result = await AuthApi().postRegister(json);
               if (result.status == Status.success) {
                 final registerResult = UserByEmail.fromJson(result.data!);
@@ -112,7 +111,7 @@ class _RegisterPageState extends State<RegisterPage> {
             backgroundColor: R.colours.primary,
             borderColor: R.colours.primary,
             child: Text(
-              R.strings.daftar,
+              R.strings.register,
               style: TextStyle(
                 fontSize: 17,
                 fontWeight: FontWeight.bold,
@@ -130,18 +129,18 @@ class _RegisterPageState extends State<RegisterPage> {
             children: [
               RegisterTextField(
                 title: "Email",
-                hintText: "Email Anda",
+                hintText: "Type your email",
                 enabled: false,
                 controller: emailController,
               ),
               RegisterTextField(
-                title: "Nama Lengkap",
-                hintText: "Nama Lengkap Anda",
+                title: "Full Name",
+                hintText: "Type your full name",
                 controller: fullNameController,
               ),
               SizedBox(height: 5),
               Text(
-                "Jenis Kelamin",
+                "Gender",
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -218,7 +217,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               SizedBox(height: 5),
               Text(
-                "Kelas",
+                "Class",
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -253,8 +252,8 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               SizedBox(height: 5),
               RegisterTextField(
-                title: "Nama Sekolah",
-                hintText: "Nama Sekolah",
+                title: "School",
+                hintText: "Type the name of your school",
                 controller: schoolNameController,
               ),
             ],

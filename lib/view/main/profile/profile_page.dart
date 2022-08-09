@@ -35,7 +35,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Akun Saya"),
+        title: Text("My Account"),
         centerTitle: true,
         actions: [
           TextButton(
@@ -50,7 +50,7 @@ class _ProfilePageState extends State<ProfilePage> {
               }
             }),
             child: Text(
-              "Edit",
+              "Edit ✍🏻",
               style: TextStyle(
                 color: Colors.white,
               ),
@@ -65,7 +65,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 Container(
                   padding: EdgeInsets.only(
                     top: 28,
-                    bottom: 60,
+                    bottom: 35,
                     right: 15,
                     left: 15,
                   ),
@@ -87,7 +87,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                             Text(
@@ -101,10 +101,10 @@ class _ProfilePageState extends State<ProfilePage> {
                           ],
                         ),
                       ),
-                      Image.asset(
-                        R.assets.imgUser,
-                        width: 50,
-                        height: 50,
+                      // Profile Picture
+                      CircleAvatar(
+                        backgroundImage: NetworkImage(user!.userFoto!),
+                        radius: 40,
                       ),
                     ],
                   ),
@@ -125,10 +125,14 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Identitas Diri"),
+                      Text(
+                        "Profile",
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w600),
+                      ),
                       SizedBox(height: 15),
                       Text(
-                        "Nama Lengkap",
+                        "Full Name",
                         style: TextStyle(
                           color: R.colours.greySubtitleHome,
                           fontSize: 12,
@@ -156,7 +160,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       SizedBox(height: 15),
                       Text(
-                        "Jenis Kelamin",
+                        "Gender",
                         style: TextStyle(
                           color: R.colours.greySubtitleHome,
                           fontSize: 12,
@@ -170,7 +174,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       SizedBox(height: 15),
                       Text(
-                        "Kelas",
+                        "Class",
                         style: TextStyle(
                           color: R.colours.greySubtitleHome,
                           fontSize: 12,
@@ -184,7 +188,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       SizedBox(height: 15),
                       Text(
-                        "Asal Sekolah",
+                        "School",
                         style: TextStyle(
                           color: R.colours.greySubtitleHome,
                           fontSize: 12,
@@ -227,7 +231,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                         SizedBox(width: 10),
                         Text(
-                          "Keluar",
+                          "Log Out",
                           style: TextStyle(
                             color: Colors.red,
                             // fontSize: 12,

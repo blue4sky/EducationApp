@@ -5,7 +5,6 @@ import 'package:education_app/models/network_response.dart';
 import 'package:education_app/view/login_page.dart';
 import 'package:education_app/view/main_page.dart';
 import 'package:education_app/view/register_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:education_app/constant/r.dart';
 
@@ -57,7 +56,7 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Image.asset(
-              R.assets.icSplash,
+              R.assets.quizLogo,
               width: MediaQuery.of(context).size.width * 0.45,
             ),
           ],

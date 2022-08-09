@@ -46,7 +46,7 @@ class _KerjakanLatihanSoalPageState extends State<KerjakanLatihanSoalPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Latihan Soal"),
+        title: Text("Quiz"),
       ),
       // Next Button or Submit Button
       bottomNavigationBar: _controller == null
@@ -54,6 +54,7 @@ class _KerjakanLatihanSoalPageState extends State<KerjakanLatihanSoalPage>
               height: 0,
             )
           : Container(
+              margin: EdgeInsets.only(right: 23, bottom: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -74,9 +75,8 @@ class _KerjakanLatihanSoalPageState extends State<KerjakanLatihanSoalPage>
                             builder: (context) {
                               return BottomSheetConfirmation();
                             });
-                        print(result);
                         if (result == true) {
-                          // print("Send to backend");
+                          // Data send to backend
                           List<String> answer = [];
                           List<String> questionId = [];
 
@@ -112,9 +112,10 @@ class _KerjakanLatihanSoalPageState extends State<KerjakanLatihanSoalPage>
                     },
                     child: Text(
                       _controller?.index == soalList!.data!.length - 1
-                          ? "Kumpulin"
-                          : "Selanjutnya",
-                      style: TextStyle(fontSize: 12),
+                          ? "Check Answer"
+                          : "Next",
+                      style:
+                          TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
                     ),
                   )
                 ],
@@ -153,7 +154,7 @@ class _KerjakanLatihanSoalPageState extends State<KerjakanLatihanSoalPage>
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Soal No ${index + 1}",
+                                  "Question ${index + 1}",
                                   style: TextStyle(
                                     color: R.colours.greySubtitleHome,
                                     fontSize: 12,
@@ -298,8 +299,14 @@ class _BottomSheetConfirmationState extends State<BottomSheetConfirmation> {
             SizedBox(
               height: 15,
             ),
-            Text("Kumpulkan latihan soal sekarang?"),
-            Text("Boleh langsung kumpulin dong"),
+            Text(
+              "Do you want to check the answer now?",
+              style:
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
+            ),
+            SizedBox(
+              height: 10,
+            ),
             Row(
               children: [
                 Expanded(
@@ -307,7 +314,7 @@ class _BottomSheetConfirmationState extends State<BottomSheetConfirmation> {
                         onPressed: () {
                           Navigator.of(context).pop(false);
                         },
-                        child: Text("Nanti dulu"))),
+                        child: Text("Not Now"))),
                 SizedBox(
                   width: 15,
                 ),
@@ -316,7 +323,7 @@ class _BottomSheetConfirmationState extends State<BottomSheetConfirmation> {
                         onPressed: () {
                           Navigator.of(context).pop(true);
                         },
-                        child: Text("Ya"))),
+                        child: Text("Yes"))),
                 SizedBox(
                   width: 15,
                 ),

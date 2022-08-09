@@ -65,7 +65,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         centerTitle: true,
         iconTheme: IconThemeData(color: Colors.white),
         title: Text(
-          "Edit Akun",
+          "Edit Profile",
           style: TextStyle(
             color: Colors.white,
             fontSize: 18,
@@ -86,7 +86,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 "gender": gender,
                 "foto": UserEmail.getUserPhotoUrl(),
               };
-              print(json);
               final result = await AuthApi().postUpdateUser(json);
               if (result.status == Status.success) {
                 final registerResult = UserByEmail.fromJson(result.data!);
@@ -106,7 +105,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             backgroundColor: R.colours.primary,
             borderColor: R.colours.primary,
             child: Text(
-              R.strings.perbaharuiData,
+              R.strings.updateData,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -124,18 +123,18 @@ class _EditProfilePageState extends State<EditProfilePage> {
             children: [
               EditProfileTextField(
                 title: "Email",
-                hintText: "Email Anda",
+                hintText: "Type your email",
                 enabled: false,
                 controller: emailController,
               ),
               EditProfileTextField(
-                title: "Nama Lengkap",
-                hintText: "Nama Lengkap Anda",
+                title: "Full Name",
+                hintText: "Type your full name",
                 controller: fullNameController,
               ),
               SizedBox(height: 5),
               Text(
-                "Jenis Kelamin",
+                "Gender",
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
@@ -215,7 +214,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
               ),
               SizedBox(height: 5),
               Text(
-                "Kelas",
+                "Class",
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -251,8 +250,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
               ),
               SizedBox(height: 5),
               EditProfileTextField(
-                title: "Nama Sekolah",
-                hintText: "Nama Sekolah",
+                title: "School",
+                hintText: "Type the name of your school",
                 controller: schoolNameController,
               ),
             ],

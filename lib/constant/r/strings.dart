@@ -1,10 +1,9 @@
 class Strings {
   String login = "Login";
-  String welcome = "Selamat Datang";
-  String loginDescription =
-      "Selamat Datang di Aplikasi Widya Edu Aplikasi Latihan dan Konsultasi Soal";
-  String loginWithGoogle = "Masuk dengan Google";
-  String loginWithApple = "Masuk dengan Apple";
-  String daftar = "DAFTAR";
-  String perbaharuiData = "Perbaharui Data";
+  String welcome = "👋 Welcome!";
+  String loginDescription = "Educational App Created by blue4sky";
+  String loginWithGoogle = "Login with Google";
+  String loginWithApple = "Login with Apple ID";
+  String register = "REGISTER";
+  String updateData = "Update Data";
 }

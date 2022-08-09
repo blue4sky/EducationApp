@@ -24,7 +24,7 @@ class _MainPageState extends State<MainPage> {
       floatingActionButton: FloatingActionButton(
         child: Image.asset(
           R.assets.icDiscuss,
-          width: 25,
+          width: 30,
         ),
         onPressed: () {
           Navigator.of(context)
@@ -102,7 +102,7 @@ class _MainPageState extends State<MainPage> {
                               height: 20,
                             ),
                           ),
-                          Text("Diskusi")
+                          Text("Discussion")
                         ],
                       ),
                     ),

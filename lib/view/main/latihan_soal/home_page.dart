@@ -43,7 +43,6 @@ class _HomePageState extends State<HomePage> {
   // Listening msg from firebase
   setupFCM() async {
     final tokenFcm = await FirebaseMessaging.instance.getToken();
-    print("tokenFCM: ${tokenFcm}");
 
     RemoteMessage? initialMessage =
         await FirebaseMessaging.instance.getInitialMessage();
@@ -96,9 +95,9 @@ class _HomePageState extends State<HomePage> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: Text(
-                      "Terbaru",
+                      "Latest News 📰",
                       style: TextStyle(
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w700,
                         fontSize: 16,
                       ),
                     ),
@@ -106,7 +105,7 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 11),
             bannerList == null
                 ? Container(
                     height: 70,
@@ -114,7 +113,7 @@ class _HomePageState extends State<HomePage> {
                     child: Center(child: CircularProgressIndicator()),
                   )
                 : Container(
-                    height: 150,
+                    height: 146,
                     child: ListView.builder(
                       itemCount: bannerList!.data!.length,
                       scrollDirection: Axis.horizontal,
@@ -123,13 +122,13 @@ class _HomePageState extends State<HomePage> {
                         return Padding(
                           padding: const EdgeInsets.only(left: 20.0),
                           child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(8),
                               child: Image.network(currentBanner.eventImage!)),
                         );
                       }),
                     ),
                   ),
-            SizedBox(height: 35),
+            SizedBox(height: 54),
           ],
         ),
       ),
@@ -144,9 +143,9 @@ class _HomePageState extends State<HomePage> {
           Row(
             children: [
               Text(
-                "Pilih Pelajaran",
+                "Choose Subject",
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w700,
                   fontSize: 16,
                 ),
               ),
@@ -159,9 +158,9 @@ class _HomePageState extends State<HomePage> {
                   }));
                 },
                 child: Text(
-                  "Lihat Semua",
+                  "See All",
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w500,
                     fontSize: 12,
                     color: R.colours.primary,
                   ),
@@ -222,11 +221,11 @@ class _HomePageState extends State<HomePage> {
               vertical: 15,
             ),
             child: Text(
-              "Mau kerjain latihan soal apa hari ini?",
+              "Which quiz do you want to do today?",
               style: TextStyle(
                 fontSize: 18,
                 color: Colors.white,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w700,
               ),
             ),
           ),
@@ -256,19 +255,19 @@ class _HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Hi, " + (dataUser?.userName ?? "Nama User"),
+                  "Hi, " + (dataUser?.userName ?? "User's Name"),
                   style: GoogleFonts.poppins()
-                      .copyWith(fontSize: 12, fontWeight: FontWeight.w700),
+                      .copyWith(fontSize: 12, fontWeight: FontWeight.w600),
                 ),
-                Text("Selamat Datang",
-                    style: GoogleFonts.poppins().copyWith(fontSize: 12)),
+                Text(R.strings.welcome,
+                    style: GoogleFonts.poppins()
+                        .copyWith(fontSize: 12, fontWeight: FontWeight.w400)),
               ],
             ),
           ),
-          Image.asset(
-            R.assets.imgUser,
-            width: 35,
-            height: 35,
+          CircleAvatar(
+            backgroundImage: NetworkImage(dataUser!.userFoto!),
+            radius: 20,
           ),
         ],
       ),
@@ -322,7 +321,7 @@ class MapelWidget extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "$totalDone/$totalPacket Paket latihan soal",
+                  "$totalDone/$totalPacket Package Done",
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 12,

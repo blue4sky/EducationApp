@@ -55,7 +55,7 @@ class _ResultPageState extends State<ResultPage> {
                               color: Colors.white,
                             )),
                         Text(
-                          "Tutup",
+                          "Close",
                           style: TextStyle(
                             color: Colors.white,
                           ),
@@ -64,17 +64,11 @@ class _ResultPageState extends State<ResultPage> {
                     ),
                     SizedBox(height: 70),
                     Text(
-                      "Selamat",
+                      "Congratulations 🎉",
                       style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
-                      ),
-                    ),
-                    Text(
-                      "Kamu telah menyelesaikan quiz ini",
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
+                          color: Colors.white,
+                          fontSize: 24,
+                          fontWeight: FontWeight.w400),
                     ),
                     SizedBox(height: 36),
                     Image.asset(
@@ -83,7 +77,7 @@ class _ResultPageState extends State<ResultPage> {
                     ),
                     SizedBox(height: 25),
                     Text(
-                      "Nilai kamu",
+                      "Your Score :",
                       style: TextStyle(
                         color: Colors.white,
                       ),

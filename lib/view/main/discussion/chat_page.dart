@@ -50,7 +50,7 @@ class _ChatPageState extends State<ChatPage> {
     final user = FirebaseAuth.instance.currentUser!;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Diskusi Soal"),
+        title: Text("Discussion Room"),
       ),
       body: Column(
         children: [
@@ -223,7 +223,7 @@ class _ChatPageState extends State<ChatPage> {
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                     ),
-                                    hintText: "Tulis pesan disini...",
+                                    hintText: "Type your message here...",
                                     hintStyle: TextStyle(
                                       color: Colors.grey,
                                     )),

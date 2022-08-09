@@ -56,10 +56,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-
-              SizedBox(height: 20),
+              SizedBox(height: 30),
               Image.asset(R.assets.imgLogin),
-              SizedBox(height: 35),
+              SizedBox(height: 56),
               Text(
                 R.strings.welcome,
                 style: TextStyle(
@@ -67,6 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                   fontWeight: FontWeight.w500,
                 ),
               ),
+              SizedBox(height: 10),
               Text(
                 R.strings.loginDescription,
                 textAlign: TextAlign.center,
@@ -100,23 +100,23 @@ class _LoginPageState extends State<LoginPage> {
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text("Gagal Masuk"),
+                        content: Text("Login failed!"),
                         duration: Duration(seconds: 2),
                       ),
                     );
                   }
                 },
                 backgroundColor: Colors.white,
-                borderColor: R.colours.primary,
+                borderColor: Color(0xff01b1af),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(R.assets.icGoogle),
-                    SizedBox(width: 15),
+                    SizedBox(width: 12),
                     Text(
                       R.strings.loginWithGoogle,
                       style: TextStyle(
-                        fontSize: 15,
+                        fontSize: 17,
                         fontWeight: FontWeight.w500,
                         color: R.colours.blackLogin,
                       ),
@@ -134,11 +134,11 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(R.assets.icApple),
-                    SizedBox(width: 15),
+                    SizedBox(width: 12),
                     Text(
                       R.strings.loginWithApple,
                       style: TextStyle(
-                        fontSize: 15,
+                        fontSize: 17,
                         fontWeight: FontWeight.w500,
                         color: Colors.white,
                       ),

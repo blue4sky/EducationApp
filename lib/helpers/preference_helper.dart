@@ -28,16 +28,12 @@ class PreferenceHelper {
   setUserData(UserData userDataModel) async {
     final json = userDataModel.toJson();
     final userDataString = jsonEncode(json);
-    print("simpan");
-    print(userDataString);
     await _saveString(userData, userDataString);
   }
 
   // Opposite of setUserData
   Future<UserData?> getUserData() async {
     final user = await _getString(userData);
-    print("data from pref user");
-    print(user);
     final jsonUserData = jsonDecode(user!);
     final userDataModel = UserData.fromJson(jsonUserData);
     return userDataModel;

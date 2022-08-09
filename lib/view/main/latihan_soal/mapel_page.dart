@@ -13,7 +13,7 @@ class MapelPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Pilih Mata Pelajaran"),
+        title: Text("Select a subject"),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
