@@ -1,7 +1,7 @@
 import 'package:education_app/constant/r.dart';
 import 'package:education_app/models/network_response.dart';
 import 'package:education_app/models/result_response.dart';
-import 'package:education_app/repository/latihan_soal_api.dart';
+import 'package:education_app/repository/exercise_question_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -18,7 +18,7 @@ class _ResultPageState extends State<ResultPage> {
   ResultResponse? resultData;
 
   getResult() async {
-    final result = await LatihanSoalApi().getResult(widget.exerciseId);
+    final result = await ExerciseQuestionApi().getResult(widget.exerciseId);
     if (result.status == Status.success) {
       resultData = ResultResponse.fromJson(result.data!);
       setState(() {});

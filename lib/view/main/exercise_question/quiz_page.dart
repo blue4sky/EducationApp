@@ -1,11 +1,9 @@
 import 'package:education_app/constant/r.dart';
 import 'package:education_app/helpers/user_email.dart';
-import 'package:education_app/models/kerjakan_soal_list.dart';
+import 'package:education_app/models/exercise_question_list.dart';
 import 'package:education_app/models/network_response.dart';
-import 'package:education_app/repository/latihan_soal_api.dart';
-import 'package:education_app/view/main/latihan_soal/result_page.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:education_app/repository/exercise_question_api.dart';
+import 'package:education_app/view/main/exercise_question/result_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 
@@ -20,11 +18,11 @@ class KerjakanLatihanSoalPage extends StatefulWidget {
 
 class _KerjakanLatihanSoalPageState extends State<KerjakanLatihanSoalPage>
     with SingleTickerProviderStateMixin {
-  KerjakanSoalList? soalList;
+  ExerciseQuestionList? soalList;
   getQuestionList() async {
-    final result = await LatihanSoalApi().postQuestionList(widget.id);
+    final result = await ExerciseQuestionApi().postQuestionList(widget.id);
     if (result.status == Status.success) {
-      soalList = KerjakanSoalList.fromJson(result.data!);
+      soalList = ExerciseQuestionList.fromJson(result.data!);
       _controller = TabController(length: soalList!.data!.length, vsync: this);
       // Move the button simultaneously
       _controller!.addListener(() {
@@ -91,8 +89,8 @@ class _KerjakanLatihanSoalPageState extends State<KerjakanLatihanSoalPage>
                             "bank_question_id": questionId,
                             "student_answer": answer,
                           };
-                          final result =
-                              await LatihanSoalApi().postStudentAnswer(payload);
+                          final result = await ExerciseQuestionApi()
+                              .postStudentAnswer(payload);
                           if (result.status == Status.success) {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (BuildContext context) {

@@ -1,17 +1,17 @@
-class PaketSoalList {
+class BankQuestionList {
   int? status;
   String? message;
-  List<PaketSoalData>? data;
+  List<BankQuestionData>? data;
 
-  PaketSoalList({this.status, this.message, this.data});
+  BankQuestionList({this.status, this.message, this.data});
 
-  PaketSoalList.fromJson(Map<String, dynamic> json) {
+  BankQuestionList.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
     if (json['data'] != null) {
-      data = <PaketSoalData>[];
+      data = <BankQuestionData>[];
       json['data'].forEach((v) {
-        data!.add(new PaketSoalData.fromJson(v));
+        data!.add(new BankQuestionData.fromJson(v));
       });
     }
   }
@@ -27,7 +27,7 @@ class PaketSoalList {
   }
 }
 
-class PaketSoalData {
+class BankQuestionData {
   String? exerciseId;
   String? exerciseTitle;
   String? accessType;
@@ -36,7 +36,7 @@ class PaketSoalData {
   String? jumlahSoal;
   int? jumlahDone;
 
-  PaketSoalData(
+  BankQuestionData(
       {this.exerciseId,
       this.exerciseTitle,
       this.accessType,
@@ -45,7 +45,7 @@ class PaketSoalData {
       this.jumlahSoal,
       this.jumlahDone});
 
-  PaketSoalData.fromJson(Map<String, dynamic> json) {
+  BankQuestionData.fromJson(Map<String, dynamic> json) {
     exerciseId = json['exercise_id'];
     exerciseTitle = json['exercise_title'];
     accessType = json['access_type'];

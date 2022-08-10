@@ -6,7 +6,6 @@ import 'package:education_app/models/network_response.dart';
 import 'package:education_app/models/user_by_email.dart';
 import 'package:education_app/repository/auth_api.dart';
 import 'package:education_app/view/login_page.dart';
-import 'package:education_app/view/main_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../../helpers/preference_helper.dart';
@@ -20,12 +19,12 @@ class EditProfilePage extends StatefulWidget {
 }
 
 // enum -> naming Constant value
-enum Gender { lakiLaki, perempuan }
+enum Gender { male, female }
 
 class _EditProfilePageState extends State<EditProfilePage> {
   List<String> classSlta = ["10", "11", "12"];
 
-  String gender = "Laki-laki";
+  String gender = "Male";
   String selectedClass = "10";
 
   final emailController = TextEditingController();
@@ -33,10 +32,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final fullNameController = TextEditingController();
 
   onTapGender(Gender genderInput) {
-    if (genderInput == Gender.lakiLaki) {
-      gender = "Laki-laki";
+    if (genderInput == Gender.male) {
+      gender = "Male";
     } else {
-      gender = "Perempuan";
+      gender = "Female";
     }
     setState(() {});
   }
@@ -151,7 +150,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         style: ElevatedButton.styleFrom(
                           elevation: 0,
                           primary:
-                              gender.toLowerCase() == "Laki-laki".toLowerCase()
+                              gender.toLowerCase() == "Male".toLowerCase()
                                   ? R.colours.primary
                                   : Colors.white,
                           shape: RoundedRectangleBorder(
@@ -163,14 +162,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           ),
                         ),
                         onPressed: () {
-                          onTapGender(Gender.lakiLaki);
+                          onTapGender(Gender.male);
                         },
                         child: Text(
-                          "Laki-laki",
+                          "Male",
                           style: TextStyle(
                             fontSize: 14,
                             color: gender.toLowerCase() ==
-                                    "Laki-laki".toLowerCase()
+                                    "Male".toLowerCase()
                                 ? Colors.white
                                 : Color(0xff282828),
                           ),
@@ -184,7 +183,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           elevation: 0,
-                          primary: gender == "Perempuan"
+                          primary: gender == "Female"
                               ? R.colours.primary
                               : Colors.white,
                           shape: RoundedRectangleBorder(
@@ -196,13 +195,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           ),
                         ),
                         onPressed: () {
-                          onTapGender(Gender.perempuan);
+                          onTapGender(Gender.female);
                         },
                         child: Text(
-                          "Perempuan",
+                          "Female",
                           style: TextStyle(
                             fontSize: 14,
-                            color: gender == "Perempuan"
+                            color: gender == "Female"
                                 ? Colors.white
                                 : Color(0xff282828),
                           ),

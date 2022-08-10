@@ -23,22 +23,10 @@ class _ChatPageState extends State<ChatPage> {
 
   late CollectionReference chat;
   late QuerySnapshot chatData;
-  // List<QueryDocumentSnapshot>? listChat;
-
-  // getDataFromFirebase() async {
-  //   chatData = await FirebaseFirestore.instance
-  //       .collection("room")
-  //       .doc("kimia")
-  //       .collection("chat")
-  //       .get();
-  //   // listChat = chatData.docs;
-  //   setState(() {});
-  // }
 
   @override
   void initState() {
     super.initState();
-    // getDataFromFirebase();
   }
 
   @override

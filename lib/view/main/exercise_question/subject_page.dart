@@ -1,13 +1,13 @@
-import 'package:education_app/models/mapel_list.dart';
-import 'package:education_app/view/main/latihan_soal/home_page.dart';
-import 'package:education_app/view/main/latihan_soal/paket_soal_page.dart';
+import 'package:education_app/models/subject_list.dart';
+import 'package:education_app/view/main/exercise_question/home_page.dart';
+import 'package:education_app/view/main/exercise_question/topic_page.dart';
 import 'package:flutter/material.dart';
 
 class MapelPage extends StatelessWidget {
   const MapelPage({Key? key, required this.mapel}) : super(key: key);
   static String route = "mapel_page";
 
-  final MapelList mapel;
+  final SubjectList mapel;
 
   @override
   Widget build(BuildContext context) {

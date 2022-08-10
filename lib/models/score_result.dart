@@ -1,11 +1,11 @@
-class LatihanSoalSkor {
+class ScoreResult {
   int? status;
   String? message;
   Data? data;
 
-  LatihanSoalSkor({this.status, this.message, this.data});
+  ScoreResult({this.status, this.message, this.data});
 
-  LatihanSoalSkor.fromJson(Map<String, dynamic> json) {
+  ScoreResult.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;

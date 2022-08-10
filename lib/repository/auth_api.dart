@@ -57,7 +57,7 @@ class AuthApi {
 
   Future<NetworkResponse> postRegister(body) async {
     final result =
-        await _postRequest(endpoint: ApiUrl.userRegistrasi, body: body);
+        await _postRequest(endpoint: ApiUrl.userRegistration, body: body);
     return result;
   }
 

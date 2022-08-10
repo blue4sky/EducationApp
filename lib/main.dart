@@ -1,7 +1,5 @@
 import 'package:education_app/constant/r.dart';
 import 'package:education_app/view/login_page.dart';
-import 'package:education_app/view/main/latihan_soal/mapel_page.dart';
-import 'package:education_app/view/main/latihan_soal/paket_soal_page.dart';
 import 'package:education_app/view/main_page.dart';
 import 'package:education_app/view/register_page.dart';
 import 'package:education_app/view/splash_screen.dart';
@@ -35,7 +33,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Education App',
+      title: 'Educational App',
       theme: ThemeData(
         textTheme: GoogleFonts.poppinsTextTheme(),
         appBarTheme: AppBarTheme(
@@ -50,8 +48,6 @@ class MyApp extends StatelessWidget {
         LoginPage.route: (context) => const LoginPage(),
         RegisterPage.route: (context) => const RegisterPage(),
         MainPage.route: (context) => const MainPage(),
-        // MapelPage.route: (context) => const MapelPage(),
-        // PaketSoalPage.route: (context) => const PaketSoalPage(),
       },
     );
   }

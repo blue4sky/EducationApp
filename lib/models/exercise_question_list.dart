@@ -1,11 +1,11 @@
-class KerjakanSoalList {
+class ExerciseQuestionList {
   int? status;
   String? message;
   List<Data>? data;
 
-  KerjakanSoalList({this.status, this.message, this.data});
+  ExerciseQuestionList({this.status, this.message, this.data});
 
-  KerjakanSoalList.fromJson(Map<String, dynamic> json) {
+  ExerciseQuestionList.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
     if (json['data'] != null) {

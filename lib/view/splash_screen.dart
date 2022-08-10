@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
         final dataUser = await AuthApi().getUserByEmail();
         if (dataUser.status == Status.success) {
           final data = UserByEmail.fromJson(dataUser.data!);
-          // Check if user has register or no (1 registered, 0 not yet)
+          // Check if user has register or not (1 registered, 0 not yet)
           if (data.status == 1) {
             Navigator.of(context).pushReplacementNamed(MainPage.route);
           } else {

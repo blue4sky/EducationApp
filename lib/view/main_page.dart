@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:education_app/constant/r.dart';
-import 'package:education_app/view/main/latihan_soal/home_page.dart';
+import 'package:education_app/view/main/exercise_question/home_page.dart';
 import 'package:education_app/view/main/discussion/chat_page.dart';
 import 'package:education_app/view/main/profile/profile_page.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +38,6 @@ class _MainPageState extends State<MainPage> {
         physics: NeverScrollableScrollPhysics(),
         children: [
           HomePage(), // 0
-          // ChatPage(),
           ProfilePage(), // 1
         ],
       ),

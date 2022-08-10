@@ -2,9 +2,9 @@
 
 import 'package:education_app/constant/r.dart';
 import 'package:education_app/models/network_response.dart';
-import 'package:education_app/models/paket_soal_list.dart';
-import 'package:education_app/repository/latihan_soal_api.dart';
-import 'package:education_app/view/main/latihan_soal/kerjakan_latihan_soal_page.dart';
+import 'package:education_app/models/bank_question_list.dart';
+import 'package:education_app/repository/exercise_question_api.dart';
+import 'package:education_app/view/main/exercise_question/quiz_page.dart';
 import 'package:flutter/material.dart';
 
 class PaketSoalPage extends StatefulWidget {
@@ -17,11 +17,11 @@ class PaketSoalPage extends StatefulWidget {
 }
 
 class _PaketSoalPageState extends State<PaketSoalPage> {
-  PaketSoalList? paketSoalList; // Global var
+  BankQuestionList? paketSoalList; // Global var
   getPaketSoal() async {
-    final mapelResult = await LatihanSoalApi().getPaketSoal(widget.id);
+    final mapelResult = await ExerciseQuestionApi().getExercise(widget.id);
     if (mapelResult.status == Status.success) {
-      paketSoalList = PaketSoalList.fromJson(mapelResult.data!);
+      paketSoalList = BankQuestionList.fromJson(mapelResult.data!);
       setState(() {});
     }
   }
@@ -100,7 +100,7 @@ class PaketSoalWidget extends StatelessWidget {
     required this.data,
   }) : super(key: key);
 
-  final PaketSoalData data;
+  final BankQuestionData data;
 
   @override
   Widget build(BuildContext context) {

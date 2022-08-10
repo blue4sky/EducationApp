@@ -3,12 +3,12 @@
 import 'package:education_app/constant/r.dart';
 import 'package:education_app/helpers/preference_helper.dart';
 import 'package:education_app/models/banner_list.dart';
-import 'package:education_app/models/mapel_list.dart';
+import 'package:education_app/models/subject_list.dart';
 import 'package:education_app/models/network_response.dart';
 import 'package:education_app/models/user_by_email.dart';
-import 'package:education_app/repository/latihan_soal_api.dart';
-import 'package:education_app/view/main/latihan_soal/mapel_page.dart';
-import 'package:education_app/view/main/latihan_soal/paket_soal_page.dart';
+import 'package:education_app/repository/exercise_question_api.dart';
+import 'package:education_app/view/main/exercise_question/subject_page.dart';
+import 'package:education_app/view/main/exercise_question/topic_page.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -22,18 +22,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  MapelList? mapelList; // Global var
+  SubjectList? mapelList; // Global var
   getMapel() async {
-    final mapelResult = await LatihanSoalApi().getMapel();
+    final mapelResult = await ExerciseQuestionApi().getCourse();
     if (mapelResult.status == Status.success) {
-      mapelList = MapelList.fromJson(mapelResult.data!);
+      mapelList = SubjectList.fromJson(mapelResult.data!);
       setState(() {});
     }
   }
 
   BannerList? bannerList; // Global var
   getBanner() async {
-    final banner = await LatihanSoalApi().getBanner();
+    final banner = await ExerciseQuestionApi().getBanner();
     if (banner.status == Status.success) {
       bannerList = BannerList.fromJson(banner.data!);
       setState(() {});
@@ -135,7 +135,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Container _buildHomeListMapel(MapelList? list) {
+  Container _buildHomeListMapel(SubjectList? list) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 20, vertical: 21),
       child: Column(

@@ -1,11 +1,11 @@
-class MapelList {
+class SubjectList {
   int? status;
   String? message;
   List<Data>? data;
 
-  MapelList({this.status, this.message, this.data});
+  SubjectList({this.status, this.message, this.data});
 
-  MapelList.fromJson(Map<String, dynamic> json) {
+  SubjectList.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
     if (json['data'] != null) {
