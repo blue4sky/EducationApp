@@ -78,16 +78,16 @@ class _ChatPageState extends State<ChatPage> {
                               Text(
                                 currentChat["nama"],
                                 style: TextStyle(
-                                  fontSize: 10,
-                                  color: Color(0xff5200FF),
-                                ),
+                                    fontSize: 10,
+                                    color: Color(0xff03BDB9),
+                                    fontWeight: FontWeight.w600),
                               ),
                               Container(
                                 padding: EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 4),
                                 decoration: BoxDecoration(
                                   color: user.uid == currentChat["uid"]
-                                      ? Colors.green.withOpacity(0.5)
+                                      ? Color(0xffE0F8FF)
                                       : Color(0xffffdcdc),
                                   borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(10),
@@ -103,6 +103,9 @@ class _ChatPageState extends State<ChatPage> {
                                 child: currentChat["type"] == "file"
                                     ? Image.network(
                                         currentChat["file_url"],
+                                        width: 300,
+                                        height: 300,
+                                        alignment: AlignmentDirectional.center,
                                         errorBuilder:
                                             (context, error, stackTrace) {
                                           return Container(
@@ -113,6 +116,9 @@ class _ChatPageState extends State<ChatPage> {
                                       )
                                     : Text(
                                         currentChat["content"],
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w100),
                                       ),
                               ),
                               Text(
@@ -148,7 +154,7 @@ class _ChatPageState extends State<ChatPage> {
                     onPressed: () {},
                     icon: Icon(
                       Icons.add,
-                      color: Colors.blue,
+                      color: R.colours.primary,
                     ),
                   ),
                   Expanded(
@@ -208,12 +214,12 @@ class _ChatPageState extends State<ChatPage> {
                                       },
                                       icon: Icon(
                                         Icons.camera_alt,
-                                        color: Colors.blue,
+                                        color: R.colours.primary,
                                       ),
                                     ),
                                     contentPadding: EdgeInsets.zero,
                                     border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
+                                      borderRadius: BorderRadius.circular(8),
                                     ),
                                     hintText: "Type your message here...",
                                     hintStyle: TextStyle(
@@ -249,7 +255,7 @@ class _ChatPageState extends State<ChatPage> {
                     },
                     icon: Icon(
                       Icons.send,
-                      color: Colors.blue,
+                      color: R.colours.primary,
                     ),
                   ),
                 ],
