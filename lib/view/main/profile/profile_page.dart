@@ -35,7 +35,10 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("My Account"),
+        title: Text(
+          "My Account",
+          style: TextStyle(fontWeight: FontWeight.w600),
+        ),
         centerTitle: true,
         actions: [
           TextButton(
@@ -61,7 +64,7 @@ class _ProfilePageState extends State<ProfilePage> {
       body: user == null
           ? Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
-            child: Column(
+              child: Column(
                 children: [
                   Container(
                     padding: EdgeInsets.only(
@@ -118,7 +121,8 @@ class _ProfilePageState extends State<ProfilePage> {
                       borderRadius: BorderRadius.circular(10),
                       boxShadow: [
                         BoxShadow(
-                            blurRadius: 7, color: Colors.black.withOpacity(0.25))
+                            blurRadius: 7,
+                            color: Colors.black.withOpacity(0.25))
                       ],
                     ),
                     margin: EdgeInsets.symmetric(vertical: 18, horizontal: 13),
@@ -213,7 +217,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     }),
                     child: Container(
                       margin: EdgeInsets.symmetric(horizontal: 13),
-                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
@@ -244,7 +249,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ],
               ),
-          ),
+            ),
     );
   }
 }

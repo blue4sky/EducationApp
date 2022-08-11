@@ -44,7 +44,11 @@ class _KerjakanLatihanSoalPageState extends State<KerjakanLatihanSoalPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Quiz"),
+        centerTitle: true,
+        title: Text(
+          "Quiz",
+          style: TextStyle(fontWeight: FontWeight.w600),
+        ),
       ),
       // Next Button or Submit Button
       bottomNavigationBar: _controller == null
@@ -224,12 +228,14 @@ class _KerjakanLatihanSoalPageState extends State<KerjakanLatihanSoalPage>
       },
       child: Container(
           padding: EdgeInsets.symmetric(horizontal: 20),
-          margin: EdgeInsets.symmetric(vertical: 2),
+          margin: EdgeInsets.symmetric(vertical: 5),
           decoration: BoxDecoration(
-              color: answerCheck ? Colors.blue.withOpacity(0.4) : Colors.white,
+              color: answerCheck
+                  ? R.colours.primary.withOpacity(0.71)
+                  : Colors.white,
               border: Border.all(
                 width: 1,
-                color: Colors.grey,
+                color: Color(0xFFC9C9C9),
               ),
               borderRadius: BorderRadius.circular(10)),
           child: Row(
@@ -285,10 +291,10 @@ class _BottomSheetConfirmationState extends State<BottomSheetConfirmation> {
           children: [
             Container(
               width: 100,
-              height: 5,
+              height: 6,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: R.colours.greySubtitle),
+                  borderRadius: BorderRadius.circular(8),
+                  color: Color(0xFFC4C4C4)),
             ),
             SizedBox(
               height: 15,
@@ -300,7 +306,7 @@ class _BottomSheetConfirmationState extends State<BottomSheetConfirmation> {
             Text(
               "Do you want to check the answer now?",
               style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.w700),
             ),
             SizedBox(
               height: 10,

@@ -68,7 +68,7 @@ class _ResultPageState extends State<ResultPage> {
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 24,
-                          fontWeight: FontWeight.w400),
+                          fontWeight: FontWeight.w600),
                     ),
                     SizedBox(height: 36),
                     Image.asset(

@@ -51,42 +51,23 @@ class _PaketSoalPageState extends State<PaketSoalPage> {
               ),
             ),
             Expanded(
-                child: paketSoalList == null
-                    ? Center(
-                        child: CircularProgressIndicator(),
-                      )
-                    : SingleChildScrollView(
-                        child: Wrap(
-                          children: List.generate(paketSoalList!.data!.length,
-                              (index) {
-                            final currentPaketSoal =
-                                paketSoalList!.data![index];
-                            return Container(
-                                padding: EdgeInsets.all(3),
-                                width: MediaQuery.of(context).size.width * 0.4,
-                                child: PaketSoalWidget(data: currentPaketSoal));
-                          }).toList(),
-                        ),
-                      )
-
-                // GridView.count(
-                //     mainAxisSpacing: 10,
-                //     crossAxisSpacing: 10,
-                //     crossAxisCount: 2,
-                //     childAspectRatio: 4 / 3,
-                //     children:
-                //         List.generate(paketSoalList!.data!.length, (index) {
-                //       final currentPaketSoal = paketSoalList!.data![index];
-                //       return PaketSoalWidget(data: currentPaketSoal);
-                //     }).toList(),
-                //     // [
-                //     //   PaketSoalWidget(),
-                //     //   PaketSoalWidget(),
-                //     //   PaketSoalWidget(),
-                //     //   PaketSoalWidget(),
-                //     // ],
-                //   ),
-                ),
+              child: paketSoalList == null
+                  ? Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : SingleChildScrollView(
+                      child: Wrap(
+                        children:
+                            List.generate(paketSoalList!.data!.length, (index) {
+                          final currentPaketSoal = paketSoalList!.data![index];
+                          return Container(
+                              padding: EdgeInsets.all(5),
+                              width: MediaQuery.of(context).size.width * 0.45,
+                              child: PaketSoalWidget(data: currentPaketSoal));
+                        }).toList(),
+                      ),
+                    ),
+            ),
           ],
         ),
       ),
@@ -122,16 +103,17 @@ class PaketSoalWidget extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Colors.blue.withOpacity(0.2),
+                color: Colors.grey.withOpacity(0.1),
               ),
               padding: EdgeInsets.all(12),
               child: Image.asset(R.assets.icNote, width: 14),
             ),
-            SizedBox(height: 4),
+            SizedBox(height: 7),
             Text(
               data.exerciseTitle!,
               style: TextStyle(
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w700,
+                fontSize: 14,
               ),
             ),
             Text(

@@ -38,7 +38,11 @@ class _ChatPageState extends State<ChatPage> {
     final user = FirebaseAuth.instance.currentUser!;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Discussion Room"),
+        centerTitle: true,
+        title: Text(
+          "Discussion Room",
+          style: TextStyle(fontWeight: FontWeight.w600),
+        ),
       ),
       body: Column(
         children: [

@@ -66,9 +66,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         title: Text(
           "Edit Profile",
           style: TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-          ),
+              color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600),
         ),
       ),
       bottomNavigationBar: SafeArea(
@@ -149,10 +147,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           elevation: 0,
-                          primary:
-                              gender.toLowerCase() == "Male".toLowerCase()
-                                  ? R.colours.primary
-                                  : Colors.white,
+                          primary: gender.toLowerCase() == "Male".toLowerCase()
+                              ? R.colours.primary
+                              : Colors.white,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),
                             side: BorderSide(
@@ -168,8 +165,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           "Male",
                           style: TextStyle(
                             fontSize: 14,
-                            color: gender.toLowerCase() ==
-                                    "Male".toLowerCase()
+                            color: gender.toLowerCase() == "Male".toLowerCase()
                                 ? Colors.white
                                 : Color(0xff282828),
                           ),
