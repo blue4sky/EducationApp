@@ -132,15 +132,18 @@ class _KerjakanLatihanSoalPageState extends State<KerjakanLatihanSoalPage>
                 // TabBar No Soal
                 Container(
                   child: TabBar(
+                    enableFeedback: true,
                     controller: _controller,
+                    indicator: BoxDecoration(
+                        shape: BoxShape.circle, color: R.colours.primary),
+                    labelColor: Colors.white,
+                    unselectedLabelColor: Colors.black,
                     tabs: List.generate(
-                        soalList!.data!.length,
-                        (index) => Text(
-                              "${index + 1}",
-                              style: TextStyle(
-                                color: Colors.black,
-                              ),
-                            )),
+                      soalList!.data!.length,
+                      (index) => Text(
+                        "${index + 1}",
+                      ),
+                    ),
                   ),
                 ),
                 // TabBarView Quest and Choices
