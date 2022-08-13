@@ -7,16 +7,15 @@ import 'package:education_app/view/main/exercise_question/result_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 
-class KerjakanLatihanSoalPage extends StatefulWidget {
-  const KerjakanLatihanSoalPage({Key? key, required this.id}) : super(key: key);
+class QuizPage extends StatefulWidget {
+  const QuizPage({Key? key, required this.id}) : super(key: key);
   final String id;
 
   @override
-  State<KerjakanLatihanSoalPage> createState() =>
-      _KerjakanLatihanSoalPageState();
+  State<QuizPage> createState() => _QuizPageState();
 }
 
-class _KerjakanLatihanSoalPageState extends State<KerjakanLatihanSoalPage>
+class _QuizPageState extends State<QuizPage>
     with SingleTickerProviderStateMixin {
   ExerciseQuestionList? soalList;
   getQuestionList() async {

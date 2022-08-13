@@ -7,18 +7,18 @@ import 'package:education_app/repository/exercise_question_api.dart';
 import 'package:education_app/view/main/exercise_question/quiz_page.dart';
 import 'package:flutter/material.dart';
 
-class PaketSoalPage extends StatefulWidget {
-  const PaketSoalPage({Key? key, required this.id}) : super(key: key);
+class TopicPage extends StatefulWidget {
+  const TopicPage({Key? key, required this.id}) : super(key: key);
   static String route = "paket_soal_page";
   final String id;
 
   @override
-  State<PaketSoalPage> createState() => _PaketSoalPageState();
+  State<TopicPage> createState() => _TopicPageState();
 }
 
-class _PaketSoalPageState extends State<PaketSoalPage> {
+class _TopicPageState extends State<TopicPage> {
   BankQuestionList? paketSoalList; // Global var
-  getPaketSoal() async {
+  getTopic() async {
     final mapelResult = await ExerciseQuestionApi().getExercise(widget.id);
     if (mapelResult.status == Status.success) {
       paketSoalList = BankQuestionList.fromJson(mapelResult.data!);
@@ -29,7 +29,7 @@ class _PaketSoalPageState extends State<PaketSoalPage> {
   @override
   void initState() {
     super.initState();
-    getPaketSoal();
+    getTopic();
   }
 
   @override
@@ -37,7 +37,11 @@ class _PaketSoalPageState extends State<PaketSoalPage> {
     return Scaffold(
       backgroundColor: R.colours.grey,
       appBar: AppBar(
-        title: Text("Topics of The Subject"),
+        centerTitle: true,
+        title: Text(
+          "Topics of The Subject",
+          style: TextStyle(fontWeight: FontWeight.w600),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
@@ -88,7 +92,7 @@ class PaketSoalWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => KerjakanLatihanSoalPage(id: data.exerciseId!),
+          builder: (context) => QuizPage(id: data.exerciseId!),
         ));
       },
       child: Container(

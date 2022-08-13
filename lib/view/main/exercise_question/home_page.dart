@@ -47,12 +47,6 @@ class _HomePageState extends State<HomePage> {
     RemoteMessage? initialMessage =
         await FirebaseMessaging.instance.getInitialMessage();
 
-    // If the message also contains a data property with a "type" of "chat",
-    // navigate to a chat screen
-    // if (initialMessage != null) {
-    //   _handleMessage(initialMessage);
-    // }
-
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       print('Got a message whilst in the foreground!');
       print('Message data: ${message.data}');
@@ -154,7 +148,7 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () {
                   Navigator.of(context)
                       .push(MaterialPageRoute(builder: (BuildContext context) {
-                    return MapelPage(mapel: mapelList!);
+                    return SubjectPage(mapel: mapelList!);
                   }));
                 },
                 child: Text(
@@ -185,10 +179,10 @@ class _HomePageState extends State<HomePage> {
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) =>
-                              PaketSoalPage(id: currentMapel.courseId!),
+                              TopicPage(id: currentMapel.courseId!),
                         ));
                       },
-                      child: MapelWidget(
+                      child: TopicWidget(
                         title: currentMapel.courseName!,
                         totalPacket: currentMapel.jumlahMateri!,
                         totalDone: currentMapel.jumlahDone!,
@@ -275,8 +269,8 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class MapelWidget extends StatelessWidget {
-  const MapelWidget({
+class TopicWidget extends StatelessWidget {
+  const TopicWidget({
     Key? key,
     required this.title,
     required this.totalDone,

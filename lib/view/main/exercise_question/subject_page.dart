@@ -3,8 +3,8 @@ import 'package:education_app/view/main/exercise_question/home_page.dart';
 import 'package:education_app/view/main/exercise_question/topic_page.dart';
 import 'package:flutter/material.dart';
 
-class MapelPage extends StatelessWidget {
-  const MapelPage({Key? key, required this.mapel}) : super(key: key);
+class SubjectPage extends StatelessWidget {
+  const SubjectPage({Key? key, required this.mapel}) : super(key: key);
   static String route = "mapel_page";
 
   final SubjectList mapel;
@@ -13,7 +13,11 @@ class MapelPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Select a subject"),
+        centerTitle: true,
+        title: Text(
+          "Select a subject",
+          style: TextStyle(fontWeight: FontWeight.w600),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
@@ -27,11 +31,10 @@ class MapelPage extends StatelessWidget {
               return GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) =>
-                        PaketSoalPage(id: currentMapel.courseId!),
+                    builder: (context) => TopicPage(id: currentMapel.courseId!),
                   ));
                 },
-                child: MapelWidget(
+                child: TopicWidget(
                   title: currentMapel.courseName!,
                   totalPacket: currentMapel.jumlahMateri!,
                   totalDone: currentMapel.jumlahDone!,
